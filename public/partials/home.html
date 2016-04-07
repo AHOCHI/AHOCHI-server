@@ -1,1 +1,23 @@
-<h1>Home Page</h1>
+<h1>Social Service Providers</h1>
+<p>
+    <a href="/#/add-provider">Add a Provider</a>
+</p>
+<ul>
+	<li ng-repeat='provider in providers'>
+		<a href="/#/provider/{{provider._id}}">
+			<b>{{provider.name}}</b>
+		</a>
+		<a href="/#/provider/delete/{{provider._id}}">
+			<i class="glyphicon glyphicon-remove"></i>
+		</a>
+		<ul>
+			<li>{{provider.phone}}</li>
+			<li>{{provider.street}}, {{provider.city}}, {{provider.state}} {{provider.zip}}</li>
+			<li>{{provider.website}}</li>
+			<li>Services: {{provider.services}}</li>
+			<li>Counties Served: {{provider.countiesServed}}</li>
+			<li>{{provider.description}}</li>	
+		</ul>
+		<br>
+	</li>
+</ul>

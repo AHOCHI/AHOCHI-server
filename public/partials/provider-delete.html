@@ -1,0 +1,14 @@
+<h1>Delete Provider</h1>
+<p>
+	Are you sure you want to delete this provider?
+</p>
+<ul>
+	<li>{{provider.phone}}</li>
+	<li>{{provider.street}}, {{provider.city}}, {{provider.state}} {{provider.zip}}</li>
+	<li>{{provider.website}}</li>
+	<li>Services: {{provider.services}}</li>
+	<li>Counties Served: {{provider.countiesServed}}</li>
+	<li>{{provider.description}}</li>
+</ul>
+<input type="button" value="Yes, Delete" class="btn btn-danger" ng-click="delete()" />
+<a class="btn btn-default" href="/#/">No, Go Back</a>

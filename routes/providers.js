@@ -12,4 +12,61 @@ router.get('/', function(req, res) {
 	});
 });
 
+router.post('/', function(req, res){
+	var collection = db.get('providers');
+	collection.insert({
+		name: req.body.name,
+		phone: req.body.phone,
+		street: req.body.street,
+		city: req.body.city,
+		state: req.body.state,
+		zip: req.body.zip,
+		services: req.body.services,
+		countiesServed: req.body.counties,
+		website: req.body.website,
+		description: req.body.description
+	}, function(err, provider){
+		if (err) throw err;
+		res.json(provider);
+	});
+});
+
+router.get('/:id', function(req, res) {
+	var collection = db.get('providers');
+	collection.findOne({_id: req.params.id }, function(err, provider){
+		if (err) throw err;
+		res.json(provider);
+	});
+});
+
+router.put('/:id', function(req, res) {
+	var collection = db.get('providers');
+	collection.update({
+		_id: req.params.id
+	},
+	{
+		name: req.body.name,
+		phone: req.body.phone,
+		street: req.body.street,
+		city: req.body.city,
+		state: req.body.state,
+		zip: req.body.zip,
+		services: req.body.services,
+		countiesServed: req.body.counties,
+		website: req.body.website,
+		description: req.body.description	
+	}, function(err, provider){
+		if (err) throw err;
+		res.json(provider);
+	});
+});
+
+router.delete('/:id', function(req, res) {
+	var collection = db.get('providers');
+	collection.remove({ _id: req.params.id }, function(err, provider){
+		if (err) throw err;
+		res.json(provider);
+	});
+});
+
 module.exports = router;
