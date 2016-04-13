@@ -30,11 +30,11 @@ An example document in the the "providers" collection:
 ## RESTful API
 The AHOCHI-server API provides the following endpoints:
 
-**Show All Providers**
+* **Show All Providers**
 	* URL - /api/providers/ 
 	* Method - GET 
 
-**Add New Provider**
+* **Add New Provider**
 	* URL - /api/providers/ 
 	* Method - POST
 
