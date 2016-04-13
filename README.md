@@ -31,9 +31,7 @@ An example document in the the "providers" collection:
 The AHOCHI-server API provides the following endpoints:
 
 **Show All Providers**
-
 URL - /api/providers/ 
-
 Method - GET 
 
 **Add New Provider**
