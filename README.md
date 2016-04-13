@@ -39,6 +39,7 @@ The AHOCHI-server API provides the following endpoints:
 * **Add New Provider**
 	* URL - /api/providers/ 
 	* Method - POST
+	* *Checks for duplicate based on name field*
 * **Show a Provider**
 	* URL - /api/providers/:id 
 	* Method - GET
