@@ -8,7 +8,7 @@ AHOCHI-server assumes a MongoDB called "ahochiMEAN" installed locally in the def
 
 An example document in the the "providers" collection:
 
-'''javascript
+```javascript
     {
         "_id" : ObjectId("5701c56d79b222305ac04d91"),
    	    "name" : "Bethany House"
@@ -28,7 +28,7 @@ An example document in the the "providers" collection:
         "website" : "http://www.bethanyhouseservices.org/",
         "description" : "Single women with and without children (female children any age and male children 12 years old and younger) Must look for jobs and housing on a daily basis; Case management services"
     }
-'''
+```
 
 ## RESTful API
 The AHOCHI-server API provides the following endpoints:
