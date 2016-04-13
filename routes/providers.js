@@ -14,20 +14,33 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res){
 	var collection = db.get('providers');
-	collection.insert({
-		name: req.body.name,
-		phone: req.body.phone,
-		street: req.body.street,
-		city: req.body.city,
-		state: req.body.state,
-		zip: req.body.zip,
-		services: req.body.services,
-		countiesServed: req.body.counties,
-		website: req.body.website,
-		description: req.body.description
-	}, function(err, provider){
+	
+	//check for duplicate provider based on name
+	collection.findOne({name: req.body.name }, function(err, provider){
 		if (err) throw err;
-		res.json(provider);
+		
+		if(provider != null){
+			//if already exists return the provider
+			res.json(provider);
+		}
+		
+		else{
+			collection.insert({
+				name: req.body.name,
+				phone: req.body.phone,
+				street: req.body.street,
+				city: req.body.city,
+				state: req.body.state,
+				zip: req.body.zip,
+				services: req.body.services,
+				countiesServed: req.body.counties,
+				website: req.body.website,
+				description: req.body.description
+			}, function(err, provider){
+				if (err) throw err;
+				res.json(provider);
+			});
+		};
 	});
 });
 
