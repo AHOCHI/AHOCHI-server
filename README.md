@@ -33,67 +33,54 @@ The AHOCHI-server API provides the following endpoints:
 * **Show All Providers**
 	* URL - /api/providers/ 
 	* Method - GET 
-
 * **Add New Provider**
 	* URL - /api/providers/ 
 	* Method - POST
-
-**Show a Provider**
-URL - /api/providers/:id 
-Method - GET
-URL Param - Required: id=[ObjectId] - example: /api/providers/5701c56d79b222305ac04d91 
-
-**Update a Provider**
-URL - /api/providers/:id 
-Method - PUT
-URL Param - Required: id=[ObjectId] - example: /api/providers/5701c56d79b222305ac04d91
-
-**Delete a Provider**
-URL - /api/providers/:id 
-Method - DELETE
-URL Param - Required: id=[ObjectId] - example: /api/providers/5701c56d79b222305ac04d91
-
-**Search All Providers**
-URL - /api/providers/search/:search_string 
-METHOD – GET 
-URL Param - Required: search_string=[string] - example: /api/providers/search/shelters
-
-**Show All Providers in a City**
-URL - /api/providers/by_city/:city 
-METHOD – GET 
-URL Param - Required: city=[string] - example: /api/providers/by_city/Cincinnati
-
-**Search All Providers in a City**
-URL - /api/providers/by_city/:city/:search_string 
-METHOD – GET 
-URL Param - Required: city=[string], search_string=[string] - example: /api/providers/by_city/Cincinnati/shelters
-
-**Show All Providers in a Zip Code**
-URL - /api/providers/by_zip/:zip 
-METHOD – GET 
-URL Param - Required: zip=[string] - example: /api/providers/by_zip/45214
-
-**Search All Providers in a Zip Code**
-URL - /api/providers/by_zip/:zip/:search_string 
-METHOD – GET 
-URL Param - Required: zip=[string], search_string=[string] - example: /api/providers/by_zip/45214/shelters
-
-**Show All Providers in a State**
-URL - /api/providers/by_state/:state 
-METHOD – GET 
-URL Param - Required: state=[string] - example: /api/providers/by_state/OH
-
-**Search All Providers in a State**
-URL - /api/providers/by_state/:state/:search_string 
-METHOD – GET 
-URL Param - Required: state=[string], search_string=[string] - example: /api/providers/by_state/OH/shelters
-
-**Show All Providers which offer services in a County**
-URL - /api/providers/by_county/:county 
-METHOD – GET 
-URL Param - Required: county=[string] - example: /api/providers/by_state/Hamilton
-
-**Search All Providers which offer services in a County**
-URL - /api/providers/by_county/:county/:search_string 
-METHOD – GET 
-URL Param - Required: county=[string], search_string=[string] - example: /api/providers/by_county/Hamilton/shelters
+* **Show a Provider**
+	* URL - /api/providers/:id 
+	* Method - GET
+	* URL Param - Required: id=[ObjectId] - example: /api/providers/5701c56d79b222305ac04d91 
+* **Update a Provider**
+	* URL - /api/providers/:id 
+	* Method - PUT
+	* URL Param - Required: id=[ObjectId] - example: /api/providers/5701c56d79b222305ac04d91
+* **Delete a Provider**
+	* URL - /api/providers/:id 
+	* Method - DELETE
+	* URL Param - Required: id=[ObjectId] - example: /api/providers/5701c56d79b222305ac04d91
+* **Search All Providers**
+	* URL - /api/providers/search/:search_string 
+	* METHOD – GET 
+	* URL Param - Required: search_string=[string] - example: /api/providers/search/shelters
+* **Show All Providers in a City**
+	* URL - /api/providers/by_city/:city 
+	* METHOD – GET 
+	* URL Param - Required: city=[string] - example: /api/providers/by_city/Cincinnati
+* **Search All Providers in a City**
+	* URL - /api/providers/by_city/:city/:search_string 
+	* METHOD – GET 
+	* URL Param - Required: city=[string], search_string=[string] - example: /api/providers/by_city/Cincinnati/shelters
+* **Show All Providers in a Zip Code**
+	* URL - /api/providers/by_zip/:zip 
+	* METHOD – GET 
+	* URL Param - Required: zip=[string] - example: /api/providers/by_zip/45214
+* **Search All Providers in a Zip Code**
+	* URL - /api/providers/by_zip/:zip/:search_string 
+	* METHOD – GET 
+	* URL Param - Required: zip=[string], search_string=[string] - example: /api/providers/by_zip/45214/shelters
+* **Show All Providers in a State**
+	* URL - /api/providers/by_state/:state 
+	* METHOD – GET 
+	* URL Param - Required: state=[string] - example: /api/providers/by_state/OH
+* **Search All Providers in a State**
+	* URL - /api/providers/by_state/:state/:search_string 
+	* METHOD – GET 
+	* URL Param - Required: state=[string], search_string=[string] - example: /api/providers/by_state/OH/shelters
+* **Show All Providers which offer services in a County**
+	* URL - /api/providers/by_county/:county 
+	* METHOD – GET 
+	* URL Param - Required: county=[string] - example: /api/providers/by_state/Hamilton
+* **Search All Providers which offer services in a County**
+	* URL - /api/providers/by_county/:county/:search_string 
+	* METHOD – GET 
+	* URL Param - Required: county=[string], search_string=[string] - example: /api/providers/by_county/Hamilton/shelters
