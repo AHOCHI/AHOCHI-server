@@ -7,26 +7,26 @@ AHOCHI-server provides a RESTful API for interacting with a MongoDB database of 
 AHOCHI-server assumes a MongoDB called "ahochiMEAN" installed locally in the default location. It has one collection, which is called "providers". If your installation is different, it is easy enough to change these names in the route files.
 
 An example document in the the "providers" collection:
-'''json
-{
-    "_id" : ObjectId("5701c56d79b222305ac04d91"),
-   	"name" : "Bethany House"
-    "phone" : "555.555.1234",
-    "street" : "1841 Fairmont Avenue",
-    "city" : "Cincinnati",
-    "state" : "OH",
-    "zip" : "45214",
-    "services" : [ 
-        "Emergency Shelters - Families", 
-        "Emergency Shelters - Individuals"
-    ],
-    "countiesServed" : [ 
-        "Hamilton", 
-        "Warren"
-    ],
-    "website" : "http://www.bethanyhouseservices.org/",
-    "description" : "Single women with and without children (female children any age and male children 12 years old and younger) Must look for jobs and housing on a daily basis; Case management services"
-}
+'''javascript
+    {
+        "_id" : ObjectId("5701c56d79b222305ac04d91"),
+   	    "name" : "Bethany House"
+        "phone" : "555.555.1234",
+        "street" : "1841 Fairmont Avenue",
+        "city" : "Cincinnati",
+        "state" : "OH",
+        "zip" : "45214",
+        "services" : [ 
+            "Emergency Shelters - Families", 
+            "Emergency Shelters - Individuals"
+        ],
+        "countiesServed" : [ 
+            "Hamilton", 
+            "Warren"
+        ],
+        "website" : "http://www.bethanyhouseservices.org/",
+        "description" : "Single women with and without children (female children any age and male children 12 years old and younger) Must look for jobs and housing on a daily basis; Case management services"
+    }
 '''
 
 ## RESTful API
