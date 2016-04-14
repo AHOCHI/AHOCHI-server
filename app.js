@@ -13,6 +13,11 @@ var by_state = require('./routes/by_state');
 var by_zip = require('./routes/by_zip');
 var by_city = require('./routes/by_city');
 var by_county = require('./routes/by_county');
+var zips = require('./routes/zips');
+var states = require('./routes/states');
+var cities = require('./routes/cities');
+var counties = require('./routes/counties');
+var services = require('./routes/services');
 
 var app = express();
 
@@ -36,6 +41,11 @@ app.use('/api/providers/by_state', by_state);
 app.use('/api/providers/by_zip', by_zip);
 app.use('/api/providers/by_city', by_city);
 app.use('/api/providers/by_county', by_county);
+app.use('/api/zips', zips);
+app.use('/api/states', states);
+app.use('/api/cities', cities);
+app.use('/api/counties', counties);
+app.use('/api/services', services);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
