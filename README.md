@@ -88,3 +88,30 @@ The AHOCHI-server API provides the following endpoints:
 	* URL - /api/providers/by_county/:county/:search_string 
 	* METHOD – GET 
 	* URL Param - Required: county=[string], search_string=[string] - example: /api/providers/by_county/Hamilton/shelters
+* **Show All Distinct Cities**
+	* URL - /api/cities/ 
+	* Method - GET 
+* **Show All Distinct Cities By State**
+	* URL - /api/cities/:state 
+	* Method - GET 
+	* URL Param - Required: state=[string] - example: /api/cities/OH
+* **Show All Distinct Zip Codes**
+	* URL - /api/zips/ 
+	* Method - GET 
+* **Show All Distinct Zip Codes By State**
+	* URL - /api/zips/:state 
+	* Method - GET 
+	* URL Param - Required: state=[string] - example: /api/zips/OH
+* **Show All Distinct Counties**
+	* URL - /api/counties/ 
+	* Method - GET 
+* **Show All Distinct Counties By State**
+	* URL - /api/counties/:state 
+	* Method - GET 
+	* URL Param - Required: state=[string] - example: /api/counties/OH
+* **Show All Distinct States**
+	* URL - /api/states/ 
+	* Method - GET 
+* **Show All Distinct Services**
+	* URL - /api/services/ 
+	* Method - GET 
