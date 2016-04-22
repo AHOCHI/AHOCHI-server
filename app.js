@@ -1,9 +1,10 @@
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var express = require('express');
-var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var path = require('path');
+var proxy = require('express-http-proxy');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -29,23 +30,35 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/api/providers', providers);
-app.use('/api/providers/search', search);
-app.use('/api/providers/by_state', by_state);
-app.use('/api/providers/by_zip', by_zip);
-app.use('/api/providers/by_city', by_city);
-app.use('/api/providers/by_county', by_county);
-app.use('/api/zips', zips);
-app.use('/api/states', states);
-app.use('/api/cities', cities);
-app.use('/api/counties', counties);
-app.use('/api/services', services);
+
+if (process.env.AHOCHI_PROXY) {
+  app.use('/api/*', proxy(process.env.AHOCHI_PROXY, {
+    forwardPath: function(req, res) {
+      return req.originalUrl;
+    }
+  }));
+}
+else {
+  app.use('/api/providers', providers);
+  app.use('/api/providers/search', search);
+  app.use('/api/providers/by_state', by_state);
+  app.use('/api/providers/by_zip', by_zip);
+  app.use('/api/providers/by_city', by_city);
+  app.use('/api/providers/by_county', by_county);
+  app.use('/api/zips', zips);
+  app.use('/api/states', states);
+  app.use('/api/cities', cities);
+  app.use('/api/counties', counties);
+  app.use('/api/services', services);
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
