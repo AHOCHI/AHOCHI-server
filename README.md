@@ -118,6 +118,7 @@ The AHOCHI-server API provides the following endpoints:
 
 ## Development setup
 1. Clone this repo
-2. If you are not running a database locally you will need to set the "AHOCHI_PROXY" environment variable to the external server you would like to connect to.  For example:
+2. Run "npm install" from the package.json directory
+3. If you are not running a database locally you will need to set the "AHOCHI_PROXY" environment variable to the external server you would like to connect to.  For example:
 	"set AHOCHI_PROXY=192.168.1.120"
-3. If you have nodemon installed you can just run "nodemon" from the package.json directory.  Otherwise you will need to run "npm start" and restart the process manually after server changes.
+4. If you have nodemon installed you can just run "nodemon" from the package.json directory.  Otherwise you will need to run "npm start" and restart the process manually after server changes.
