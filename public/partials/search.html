@@ -1,0 +1,23 @@
+<h1>Social Service Providers Search</h1>
+<ul>
+	<form ng-model="searchForm">
+		<input ng-model="search" placeholder="Search"/>
+		<input type="submit" ng-click="loadProviders(search)" value="Search" />
+	</form>
+	<span ng-if="!searched">Enter a value to search</span>
+	<span ng-if="searched && providers.length === 0">No results found</span>
+	<li ng-repeat='provider in providers'>
+		<a>
+			<b>{{provider.name}}</b>
+		</a>
+		<ul>
+			<li>{{provider.phone}}</li>
+			<li>{{provider.street}}, {{provider.city}}, {{provider.state}} {{provider.zip}}</li>
+			<li>{{provider.website}}</li>
+			<li>Services: {{provider.services}}</li>
+			<li>Counties Served: {{provider.countiesServed}}</li>
+			<li>{{provider.description}}</li>	
+		</ul>
+		<br>
+	</li>
+</ul>
