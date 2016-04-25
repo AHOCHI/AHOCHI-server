@@ -1,4 +1,4 @@
-var app = angular.module('Ahochi', ['ngResource', 'ngRoute']);
+var app = angular.module('Ahochi', ['ngResource', 'ngRoute', 'ngMaterial']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider

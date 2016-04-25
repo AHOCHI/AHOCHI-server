@@ -1,11 +1,18 @@
 <h1>Social Service Providers Search</h1>
+<form ng-model="searchForm" ng-submit="loadProviders(searchString)">
+	<md-input-container>
+		<label>Search</label>
+		<input type="text" ng-model="searchString">
+	</md-input-container>
+	<md-input-container>
+		<md-button type="submit">
+			<md-icon md-svg-src="/images/search.svg"></md-icon>
+		</md-button>
+	</md-input-container>
+</form>
+<span ng-if="!searched">Enter a value to search</span>
+<span ng-if="searched && providers.length === 0">No results found</span>
 <ul>
-	<form ng-model="searchForm">
-		<input ng-model="search" placeholder="Search"/>
-		<input type="submit" ng-click="loadProviders(search)" value="Search" />
-	</form>
-	<span ng-if="!searched">Enter a value to search</span>
-	<span ng-if="searched && providers.length === 0">No results found</span>
 	<li ng-repeat='provider in providers'>
 		<a>
 			<b>{{provider.name}}</b>
