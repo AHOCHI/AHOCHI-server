@@ -3,7 +3,7 @@ var app = angular.module('Ahochi', ['ngResource', 'ngRoute']);
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'partials/search.html',
+            templateUrl: '/partials/search.html',
             controller: 'SearchCtrl'
         })
         .otherwise({
