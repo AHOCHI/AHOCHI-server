@@ -14,10 +14,6 @@ app.config(['$routeProvider', function($routeProvider) {
 app.controller('SearchCtrl', ['$scope', '$resource',
     function($scope, $resource) {
 
-        $scope.providers = [];
-
-        $scope.searched = false;
-
         $scope.loadProviders = function(s) {
             var Providers = $resource('/api/providers/search/' + s);
             Providers.query(function(providers) {
@@ -25,5 +21,6 @@ app.controller('SearchCtrl', ['$scope', '$resource',
                 $scope.searched = true;
             })
         }
+
     }
 ]);
