@@ -14,11 +14,14 @@ app.config(['$routeProvider', function($routeProvider) {
 app.controller('SearchCtrl', ['$scope', '$resource',
     function($scope, $resource) {
 
+        $scope.loading = false;
+
         $scope.loadProviders = function(s) {
+            $scope.loading = true;
             var Providers = $resource('/api/providers/search/' + s);
             Providers.query(function(providers) {
                 $scope.providers = providers;
-                $scope.searched = true;
+                $scope.loading = false;
             })
         }
 

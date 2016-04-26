@@ -1,30 +1,36 @@
-<h1>Social Service Providers Search</h1>
-<form ng-model="searchForm" ng-submit="loadProviders(searchString)">
-	<md-input-container>
-		<label>Search</label>
-		<input type="text" ng-model="searchString" required>
-		<div class="hint" ng-show="!searchString">Enter a value to search</div>
-	</md-input-container>
-	<md-input-container>
-		<md-button type="submit">
-			<md-icon md-svg-src="/images/search.svg"></md-icon>
-		</md-button>
-	</md-input-container>
-</form>
-<span ng-if="providers && providers.length === 0">No results found</span>
-<ul>
-	<li ng-repeat='provider in providers'>
-		<a>
-			<b>{{provider.name}}</b>
-		</a>
+<md-progress-linear md-mode="indeterminate" ng-if="loading"></md-progress-linear>
+<div layout="column" layout-align="center center" class="main">
+	<h1>AHOCHI Search</h1>
+	<form ng-model="searchForm" ng-submit="loadProviders(searchString)">
+		<md-input-container>
+			<label>Search</label>
+			<input type="text" ng-model="searchString" required>
+			<div class="hint" ng-show="!searchString">Enter a value to search</div>
+		</md-input-container>
+		<md-input-container>
+			<md-button type="submit">
+				<md-icon md-svg-src="/images/search.svg"></md-icon>
+			</md-button>
+		</md-input-container>
+	</form>
+	<md-content ng-show="providers" class="results" layout-padding layout="center center">
+		<div ng-if="providers.length === 0">No results found</div>
 		<ul>
-			<li>{{provider.phone}}</li>
-			<li>{{provider.street}}, {{provider.city}}, {{provider.state}} {{provider.zip}}</li>
-			<li>{{provider.website}}</li>
-			<li>Services: {{provider.services}}</li>
-			<li>Counties Served: {{provider.countiesServed}}</li>
-			<li>{{provider.description}}</li>	
+			<li ng-repeat='provider in providers'>
+				<a>
+					<b>{{provider.name}}</b>
+				</a>
+				<ul>
+					<li>{{provider.phone}}</li>
+					<li>{{provider.street}}, {{provider.city}}, {{provider.state}} {{provider.zip}}</li>
+					<li>{{provider.website}}</li>
+					<li>Services: {{provider.services}}</li>
+					<li>Counties Served: {{provider.countiesServed}}</li>
+					<li>{{provider.description}}</li>	
+				</ul>
+				<br>
+			</li>
 		</ul>
-		<br>
-	</li>
-</ul>
+	</md-content>
+	</div>
+</div>
