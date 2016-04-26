@@ -6,23 +6,35 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: '/partials/search.html',
             controller: 'SearchCtrl'
         })
+        .when('/:q', {
+            templateUrl: '/partials/search.html',
+            controller: 'SearchCtrl'
+        })
         .otherwise({
             redirectTo: '/'
         });
 }]);
 
-app.controller('SearchCtrl', ['$scope', '$resource',
-    function($scope, $resource) {
+app.controller('SearchCtrl', ['$scope', '$resource', '$routeParams', '$route',
+    function($scope, $resource, $routeParams, $route) {
 
         $scope.loading = false;
 
         $scope.loadProviders = function(s) {
+            $route.updateParams({
+                q: s
+            });
             $scope.loading = true;
             var Providers = $resource('/api/providers/search/' + s);
             Providers.query(function(providers) {
                 $scope.providers = providers;
                 $scope.loading = false;
             })
+        }
+
+        if ($routeParams.q) {
+            $scope.searchString = $routeParams.q;
+            $scope.loadProviders($routeParams.q);
         }
 
     }
