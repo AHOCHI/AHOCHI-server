@@ -1,9 +1,12 @@
-body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body, .md-chips {
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
 }
 
 a {
   color: #00B7FF;
+  text-decoration: none;
 }
 
 .hint {
@@ -18,7 +21,6 @@ a {
 
 .results {
     margin: 10px;
-    max-width: 75%;
 }
 
 ul {
@@ -26,11 +28,11 @@ ul {
 }
 
 .results { 
-    -webkit-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -moz-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -ms-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -o-transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    transition: 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -webkit-transition: 1000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 1000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 1000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 1000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 1000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
 }
 
 .results {
@@ -40,15 +42,25 @@ ul {
 .results.ng-hide {
     top: 100%;
 }
- 
-.animate-enter {
-    top: 100%;
+
+@media screen and (min-width: 600px) {
+    .results {
+        max-width: 75%;
+    }
 }
 
-.animate-enter.animate-enter-active {
-    top: 0;
+md-sidenav {
+    min-width: 300px;
 }
- 
-.animate-leave {
-    top: 0;
+
+/* chips are read only no input necessary */ 
+._md-chip-input-container {
+    display: none;
 }
+
+/* smaller md-chips */
+/*.md-chips md-chip {
+    font-size: 14px;
+    height: 24px;
+    line-height: 24px;
+}*/

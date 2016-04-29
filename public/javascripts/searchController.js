@@ -6,10 +6,6 @@ app.config(['$routeProvider', function($routeProvider) {
             templateUrl: '/partials/search.html',
             controller: 'SearchCtrl'
         })
-        .when('/:q', {
-            templateUrl: '/partials/search.html',
-            controller: 'SearchCtrl'
-        })
         .otherwise({
             redirectTo: '/'
         });
@@ -30,6 +26,10 @@ app.controller('SearchCtrl', ['$scope', '$resource', '$routeParams', '$route',
                 $scope.providers = providers;
                 $scope.loading = false;
             })
+        }
+
+        $scope.cleanUrl = function(url) {
+            return url.replace(/\*$/g, '');
         }
 
         if ($routeParams.q) {
