@@ -169,3 +169,4 @@ The AHOCHI-server API provides the following endpoints:
 3. If you are not running a database locally you will need to set the "AHOCHI_PROXY" environment variable to the external server you would like to connect to.  For example:
 	"set AHOCHI_PROXY=192.168.1.120"
 4. If you have nodemon installed you can just run "nodemon" from the package.json directory.  Otherwise you will need to run "npm start" and restart the process manually after server changes.
+5. In order for the Geospatial queries to work, you will need a Google API key and have the Google Maps Geocoding API enabled for your project. Set an environment variable called GOOGLE_API_KEY and set it equal to your private key.
