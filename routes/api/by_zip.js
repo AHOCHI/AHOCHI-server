@@ -21,4 +21,20 @@ router.get('/:zip/:search_string', function(req, res) {
 	});
 });
 
+router.get('/:zip/by_service/:service', function(req, res) {
+	var collection = db.get('providers');
+	collection.find({zip: req.params.zip, services: req.params.service }, function(err, providers){
+		if (err) throw err;
+		res.json(providers);
+	});
+});
+
+router.get('/:zip/by_service/:service/:search_string', function(req, res) {
+	var collection = db.get('providers');
+	collection.find({zip: req.params.zip, services: req.params.service, $text: { $search: req.params.search_string } }, function(err, providers){
+		if (err) throw err;
+		res.json(providers);
+	});
+});
+
 module.exports = router;
