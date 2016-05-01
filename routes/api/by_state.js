@@ -21,4 +21,20 @@ router.get('/:state/:search_string', function(req, res) {
 	});
 });
 
+router.get('/:state/by_service/:service', function(req, res) {
+	var collection = db.get('providers');
+	collection.find({state: req.params.state, services: req.params.service }, function(err, providers){
+		if (err) throw err;
+		res.json(providers);
+	});
+});
+
+router.get('/:state/by_service/:service/:search_string', function(req, res) {
+	var collection = db.get('providers');
+	collection.find({state: req.params.state, services: req.params.service, $text: { $search: req.params.search_string } }, function(err, providers){
+		if (err) throw err;
+		res.json(providers);
+	});
+});
+
 module.exports = router;

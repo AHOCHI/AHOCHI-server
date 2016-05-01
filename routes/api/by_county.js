@@ -21,4 +21,20 @@ router.get('/:county/:search_string', function(req, res) {
 	});
 });
 
+router.get('/:county/by_service/:service', function(req, res) {
+	var collection = db.get('providers');
+	collection.find({countiesServed: req.params.county, services: req.params.service }, function(err, providers){
+		if (err) throw err;
+		res.json(providers);
+	});
+});
+
+router.get('/:county/by_service/:service/:search_string', function(req, res) {
+	var collection = db.get('providers');
+	collection.find({countiesServed: req.params.county, services: req.params.service, $text: { $search: req.params.search_string } }, function(err, providers){
+		if (err) throw err;
+		res.json(providers);
+	});
+});
+
 module.exports = router;

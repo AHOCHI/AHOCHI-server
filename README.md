@@ -6,7 +6,7 @@ AHOCHI-server provides a RESTful API for interacting with a MongoDB database of 
 ## Database Design
 AHOCHI-server assumes a MongoDB called "ahochiMEAN" installed locally in the default location. It has one collection, which is called "providers". If your installation is different, it is easy enough to change these names in the route files.
 
-An example document in the the "providers" collection:
+An example document in the "providers" collection:
 
 ```javascript
     {
@@ -26,7 +26,14 @@ An example document in the the "providers" collection:
             "Warren"
         ],
         "website" : "http://www.bethanyhouseservices.org/",
-        "description" : "Single women with and without children (female children any age and male children 12 years old and younger) Must look for jobs and housing on a daily basis; Case management services"
+        "description" : "Single women with and without children (female children any age and male children 12 years old and younger) Must look for jobs and housing on a daily basis; Case management services",
+        "location" : {
+        	"type" : "Point",
+        	"coordinates" : [ 
+            	-84.510899, 
+            	39.125362
+        	]
+    	}
     }
 ```
 
@@ -60,34 +67,74 @@ The AHOCHI-server API provides the following endpoints:
 	* URL - /api/providers/by_city/:city 
 	* METHOD – GET 
 	* URL Param - Required: city=[string] - example: /api/providers/by_city/Cincinnati
+* **Show All Providers in a City by Service**
+	* URL - /api/providers/by_city/:city/by_service/:service 
+	* METHOD – GET 
+	* URL Param - Required: city=[string], service=[string] - example: /api/providers/by_city/Cincinnati/by_service/DENTAL%20ASSISTANCE
 * **Search All Providers in a City**
 	* URL - /api/providers/by_city/:city/:search_string 
 	* METHOD – GET 
 	* URL Param - Required: city=[string], search_string=[string] - example: /api/providers/by_city/Cincinnati/shelters
+* **Search All Providers in a City by Service**
+	* URL - /api/providers/by_city/:city/by_service/:service/:search_string 
+	* METHOD – GET 
+	* URL Param - Required: city=[string], service=[string], search_string=[string] - example: /api/providers/by_city/Cincinnati/by_service/DENTAL%20ASSISTANCE/auburn
 * **Show All Providers in a Zip Code**
 	* URL - /api/providers/by_zip/:zip 
 	* METHOD – GET 
 	* URL Param - Required: zip=[string] - example: /api/providers/by_zip/45214
+* **Show All Providers in a Zip Code by Service**
+	* URL - /api/providers/by_zip/:zip/by_service/:service 
+	* METHOD – GET 
+	* URL Param - Required: zip=[string], service=[string] - example: /api/providers/by_zip/45214/by_service/DENTAL%20ASSISTANCE
 * **Search All Providers in a Zip Code**
 	* URL - /api/providers/by_zip/:zip/:search_string 
 	* METHOD – GET 
 	* URL Param - Required: zip=[string], search_string=[string] - example: /api/providers/by_zip/45214/shelters
+* **Search All Providers in a Zip Code by Service**
+	* URL - /api/providers/by_zip/:zip/by_service/:service/:search_string 
+	* METHOD – GET 
+	* URL Param - Required: zip=[string], service=[string], search_string=[string] - example: /api/providers/by_zip/45214/by_service/FOOD%20ASSISTANCE/pantry
 * **Show All Providers in a State**
 	* URL - /api/providers/by_state/:state 
 	* METHOD – GET 
-	* URL Param - Required: state=[string] - example: /api/providers/by_state/OH
+	* URL Param - Required: state=[string] - example: /api/providers/by_state/OHIO
+* **Show All Providers in a State by Service**
+	* URL - /api/providers/by_state/:state/by_service/:service 
+	* METHOD – GET 
+	* URL Param - Required: state=[string], service=[string] - example: /api/providers/by_state/OHIO/by_service/DENTAL%20ASSISTANCE
 * **Search All Providers in a State**
 	* URL - /api/providers/by_state/:state/:search_string 
 	* METHOD – GET 
 	* URL Param - Required: state=[string], search_string=[string] - example: /api/providers/by_state/OH/shelters
+* **Search All Providers in a State by Service**
+	* URL - /api/providers/by_state/:state/by_service/:service/:search_string 
+	* METHOD – GET 
+	* URL Param - Required: state=[string], service=[string], search_string=[string] - example: /api/providers/by_state/KENTUCKY/by_service/FOOD%20ASSISTANCE/pantry
 * **Show All Providers which offer services in a County**
 	* URL - /api/providers/by_county/:county 
 	* METHOD – GET 
 	* URL Param - Required: county=[string] - example: /api/providers/by_state/Hamilton
+* **Show All Providers which offer services in a County by Service**
+	* URL - /api/provider/by_county/:county/by_service/:service 
+	* METHOD – GET 
+	* URL Param - Required: county=[string], service=[string] - example: /api/providers/by_county/Hamilton/by_service/DENTAL%20ASSISTANCE
 * **Search All Providers which offer services in a County**
 	* URL - /api/providers/by_county/:county/:search_string 
 	* METHOD – GET 
 	* URL Param - Required: county=[string], search_string=[string] - example: /api/providers/by_county/Hamilton/shelters
+* **Search All Providers in a County by Service**
+	* URL - /api/providers/by_county/:county/by_service/:service/:search_string 
+	* METHOD – GET 
+	* URL Param - Required: state=[string], service=[string], search_string=[string] - example: /api/providers/by_county/HAMILTON/by_service/FOOD%20ASSISTANCE/pantry
+* **Show All Providers which offer a specific service**
+	* URL - /api/providers/by_service/:service 
+	* METHOD – GET 
+	* URL Param - Required: service=[string] - example: /api/providers/by_service/CLOTHING%20ASSISTANCE/
+* **Show All Providers which offer a specific service near an address**
+	* URL - /api/providers/by_service/:service/near/:address/:max_dist_miles 
+	* METHOD – GET 
+	* URL Param - Required: service=[string], address=[string], max_dist_miles=[number] - example: /api/providers/by_service/CLOTHING%20ASSISTANCE/near/405%20e%205th%20st%20newport%20ky/1
 * **Show All Distinct Cities**
 	* URL - /api/cities/ 
 	* Method - GET 
@@ -122,3 +169,4 @@ The AHOCHI-server API provides the following endpoints:
 3. If you are not running a database locally you will need to set the "AHOCHI_PROXY" environment variable to the external server you would like to connect to.  For example:
 	"set AHOCHI_PROXY=192.168.1.120"
 4. If you have nodemon installed you can just run "nodemon" from the package.json directory.  Otherwise you will need to run "npm start" and restart the process manually after server changes.
+5. In order for the Geospatial queries to work, you will need a Google API key and have the Google Maps Geocoding API enabled for your project. Set an environment variable called GOOGLE_API_KEY and set it equal to your private key.

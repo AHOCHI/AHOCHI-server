@@ -12,6 +12,7 @@ var apiRoutes = {
     by_zip: require('./routes/api/by_zip'),
     by_city: require('./routes/api/by_city'),
     by_county: require('./routes/api/by_county'),
+    by_service: require('./routes/api/by_service');
     zips: require('./routes/api/zips'),
     states: require('./routes/api/states'),
     cities: require('./routes/api/cities'),
@@ -57,6 +58,7 @@ else {
     app.use('/api/providers/by_zip', apiRoutes.by_zip);
     app.use('/api/providers/by_city', apiRoutes.by_city);
     app.use('/api/providers/by_county', apiRoutes.by_county);
+    app.use('/api/providers/by_service', apiRoutes.by_service);
     app.use('/api/zips', apiRoutes.zips);
     app.use('/api/states', apiRoutes.states);
     app.use('/api/cities', apiRoutes.cities);

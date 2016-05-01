@@ -1,8 +1,18 @@
 var express = require('express');
 var router = express.Router();
+var google_API_key = process.env.GOOGLE_API_KEY;
 
 var monk = require('monk');
 var db = monk('localhost:27017/ahochiMEAN');
+
+var geocoderProvider = 'google';
+var httpAdapter = 'https';
+// optional 
+var extra = {
+    apiKey: google_API_key, // for Mapquest, OpenCage, Google Premier 
+    formatter: null         // 'gpx', 'string', ... 
+};
+var geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra);
 
 router.get('/', function(req, res) {
 	var collection = db.get('providers');
@@ -25,20 +35,37 @@ router.post('/', function(req, res){
 		}
 		
 		else{
-			collection.insert({
-				name: req.body.name,
-				phone: req.body.phone,
-				street: req.body.street,
-				city: req.body.city,
-				state: req.body.state,
-				zip: req.body.zip,
-				services: req.body.services,
-				countiesServed: req.body.counties,
-				website: req.body.website,
-				description: req.body.description
-			}, function(err, provider){
-				if (err) throw err;
-				res.json(provider);
+			var address_string = req.body.street + " " + req.body.city + " " + req.body.state;
+			geocoder.geocode(address_string, function(err, data) {
+				var coords = [];
+				if(err){
+					coords[0] = 0;
+					coords[1] = 0;
+				}
+				else{
+					coords[0] = data[0].longitude;
+					coords[1] = data[0].latitude;
+				}
+
+				collection.insert({
+					name: req.body.name,
+					phone: req.body.phone,
+					street: req.body.street,
+					city: req.body.city,
+					state: req.body.state,
+					zip: req.body.zip,
+					services: req.body.services,
+					countiesServed: req.body.counties,
+					website: req.body.website,
+					description: req.body.description,
+					location: {
+						"type" : "Point",
+						"coordinates" : coords
+					}
+				}, function(err, provider){
+					if (err) throw err;
+					res.json(provider);
+				});
 			});
 		};
 	});
