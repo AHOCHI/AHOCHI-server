@@ -3,10 +3,15 @@
 	<ng-include style="display: flex" src="'/partials/sidenav.html'"></ng-include>
 	<div layout="column" layout-align="center center" flex>
 		<h1>Social Service Providers</h1>
+<!-- 		<p>
 		    <a href="/#/add-provider">Add a Provider</a>
+		</p> -->
 		<md-content ng-show="providers" class="results" layout-padding layout="center center">
 			<div ng-if="providers.length === 0">No results found</div>
 			<ul>
+				<li ng-repeat="p in providers">
+					<ah-provider provider="p"/>
+<!-- 					<a href="/#/provider/{{provider._id}}">
 						<b>{{provider.name}}</b>
 					</a>
 					<a href="/#/provider/delete/{{provider._id}}">
@@ -20,6 +25,7 @@
 						<li>Counties Served: {{provider.countiesServed}}</li>
 						<li>{{provider.description}}</li>	
 					</ul>
+					<br> -->
 				</li>
 			</ul>
 		</md-content>
