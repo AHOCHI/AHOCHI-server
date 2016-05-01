@@ -1,5 +1,3 @@
-var app = angular.module('Ahochi', ['ngResource', 'ngRoute', 'ngMaterial']);
-
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
         .when('/', {
@@ -26,10 +24,6 @@ app.controller('SearchCtrl', ['$scope', '$resource', '$routeParams', '$route',
                 $scope.providers = providers;
                 $scope.loading = false;
             })
-        }
-
-        $scope.cleanUrl = function(url) {
-            return url.replace(/\*$/g, '');
         }
 
         if ($routeParams.q) {

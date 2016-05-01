@@ -1,0 +1,20 @@
+<h1 class="md-headline">
+    <span ng-if="!provider.website">{{provider.name}}</span>
+    <a ng-if="provider.website" href="{{cleanUrl(provider.website)}}" target="_blank">{{provider.name}}</a>
+</h1>
+<p class="md-body-1">{{provider.description}}</p>
+<div class="md-body-1">
+    {{provider.street}}<br>
+    {{provider.city}} <br>
+    {{provider.state}}<br>
+    {{provider.zip}}<br>
+    {{provider.phone}}<br>
+</div>
+<h3 class="md-title">Services</h3>
+<md-chips ng-model="provider.services" readonly="true">
+    <md-chip-template><a href="/search#/?q={{$chip}}" target="_blank">{{$chip}}</a></md-chip-template>
+</md-chips>
+<h3 class="md-title">Counties</h3>
+<md-chips ng-model="provider.countiesServed" readonly="true">
+    <md-chip-template><a href="/search#/?q={{$chip}}" target="_blank">{{$chip}}</a></md-chip-template>
+</md-chips>

@@ -1,13 +1,6 @@
 <md-progress-linear md-mode="indeterminate" ng-if="loading"></md-progress-linear>
 <div layout="row" class="main">
-	<md-sidenav md-component-id="left" class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4" flex="2">
-		<md-toolbar class="md-theme-indigo">
-        	<h1 class="md-toolbar-tools">AHOCHI</h1>
-      	</md-toolbar>
-		<md-button href="/" target="_blank">Home</md-button>
-		<md-button href="/locations" target="_blank">Locations</md-button>
-		<md-button href="/search" target="_blank">Search</md-button>
-	</md-sidenav>
+	<ng-include style="display: flex" src="'/partials/sidenav.html'"></ng-include>
 	<div layout="column" layout-align="center center" flex>
 		<h1>AHOCHI Search</h1>
 		<form ng-model="searchForm" ng-submit="loadProviders(searchString)">
@@ -25,23 +18,8 @@
 		<md-content ng-show="providers" class="results" layout-padding layout="center center">
 			<div ng-if="providers.length === 0">No results found</div>
 			<ul>
-				<li ng-repeat="provider in providers">
-					<h1 class="md-headline">
-						<span ng-if="!provider.website">{{provider.name}}</span>
-						<a ng-if="provider.website" href="{{cleanUrl(provider.website)}}" target="_blank">{{provider.name}}</a>
-					</h1>
-					<p class="md-body-1">{{provider.description}}</p>
-					<div class="md-body-1">
-						{{provider.street}}<br>
-						{{provider.city}} <br>
-						{{provider.state}}<br>
-						{{provider.zip}}<br>
-						{{provider.phone}}<br>
-					</div>
-					<h3 class="md-title">Services</h3>
-					<md-chips md-chips ng-model="provider.services" readonly="true"></md-chips>
-					<h3 class="md-title">Counties</h3>
-					<md-chips md-chips ng-model="provider.countiesServed" readonly="true"></md-chips>
+				<li ng-repeat="p in providers">
+					<ah-provider provider="p"/>
 				</li>
 			</ul>
 		</md-content>

@@ -1,23 +1,28 @@
-<h1>Social Service Providers</h1>
-<p>
-    <a href="/#/add-provider">Add a Provider</a>
-</p>
-<ul>
-	<li ng-repeat='provider in providers'>
-		<a href="/#/provider/{{provider._id}}">
-			<b>{{provider.name}}</b>
-		</a>
-		<a href="/#/provider/delete/{{provider._id}}">
-			<i class="glyphicon glyphicon-remove"></i>
-		</a>
-		<ul>
-			<li>{{provider.phone}}</li>
-			<li>{{provider.street}}, {{provider.city}}, {{provider.state}} {{provider.zip}}</li>
-			<li>{{provider.website}}</li>
-			<li>Services: {{provider.services}}</li>
-			<li>Counties Served: {{provider.countiesServed}}</li>
-			<li>{{provider.description}}</li>	
-		</ul>
-		<br>
-	</li>
-</ul>
+<md-progress-linear md-mode="indeterminate" ng-if="loading"></md-progress-linear>
+<div layout="row" class="main">
+	<ng-include style="display: flex" src="'/partials/sidenav.html'"></ng-include>
+	<div layout="column" layout-align="center center" flex>
+		<h1>Social Service Providers</h1>
+		    <a href="/#/add-provider">Add a Provider</a>
+		<md-content ng-show="providers" class="results" layout-padding layout="center center">
+			<div ng-if="providers.length === 0">No results found</div>
+			<ul>
+						<b>{{provider.name}}</b>
+					</a>
+					<a href="/#/provider/delete/{{provider._id}}">
+						<i class="glyphicon glyphicon-remove"></i>
+					</a>
+					<ul>
+						<li>{{provider.phone}}</li>
+						<li>{{provider.street}}, {{provider.city}}, {{provider.state}} {{provider.zip}}</li>
+						<li>{{provider.website}}</li>
+						<li>Services: {{provider.services}}</li>
+						<li>Counties Served: {{provider.countiesServed}}</li>
+						<li>{{provider.description}}</li>	
+					</ul>
+				</li>
+			</ul>
+		</md-content>
+		</div>
+	</div>
+</div>

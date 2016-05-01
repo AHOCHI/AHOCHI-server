@@ -3,46 +3,59 @@ var router = express.Router();
 var google_API_key = process.env.GOOGLE_API_KEY;
 
 var monk = require('monk');
-var db = monk('localhost:27017/ahochiMEAN');
+var db = null;
+if (process.env.AHOCHI_PROXY) {
+	db = monk(process.env.AHOCHI_PROXY + ':27017/ahochiMEAN');
+}
+else {
+	db = monk('localhost:27017/ahochiMEAN');
+}
 
 var geocoderProvider = 'google';
 var httpAdapter = 'https';
 // optional 
 var extra = {
-    apiKey: google_API_key, // for Mapquest, OpenCage, Google Premier 
-    formatter: null         // 'gpx', 'string', ... 
+	apiKey: google_API_key, // for Mapquest, OpenCage, Google Premier 
+	formatter: null // 'gpx', 'string', ... 
 };
 var geocoder = require('node-geocoder')(geocoderProvider, httpAdapter, extra);
 
 router.get('/', function(req, res) {
 	var collection = db.get('providers');
-	collection.find({}, function(err, providers){
+	collection.find({}, {
+		limit: 100,
+		sort: {
+			_id: 1
+		}
+	}, function(err, providers) {
 		if (err) throw err;
 		res.json(providers);
 	});
 });
 
-router.post('/', function(req, res){
+router.post('/', function(req, res) {
 	var collection = db.get('providers');
-	
+
 	//check for duplicate provider based on name
-	collection.findOne({name: req.body.name }, function(err, provider){
+	collection.findOne({
+		name: req.body.name
+	}, function(err, provider) {
 		if (err) throw err;
-		
-		if(provider != null){
+
+		if (provider != null) {
 			//if already exists return the provider
 			res.json(provider);
 		}
-		
-		else{
+
+		else {
 			var address_string = req.body.street + " " + req.body.city + " " + req.body.state;
 			geocoder.geocode(address_string, function(err, data) {
 				var coords = [];
-				if(err){
+				if (err) {
 					coords[0] = 0;
 					coords[1] = 0;
 				}
-				else{
+				else {
 					coords[0] = data[0].longitude;
 					coords[1] = data[0].latitude;
 				}
@@ -59,10 +72,10 @@ router.post('/', function(req, res){
 					website: req.body.website,
 					description: req.body.description,
 					location: {
-						"type" : "Point",
-						"coordinates" : coords
+						"type": "Point",
+						"coordinates": coords
 					}
-				}, function(err, provider){
+				}, function(err, provider) {
 					if (err) throw err;
 					res.json(provider);
 				});
@@ -73,7 +86,9 @@ router.post('/', function(req, res){
 
 router.get('/:id', function(req, res) {
 	var collection = db.get('providers');
-	collection.findOne({_id: req.params.id }, function(err, provider){
+	collection.findOne({
+		_id: req.params.id
+	}, function(err, provider) {
 		if (err) throw err;
 		res.json(provider);
 	});
@@ -83,8 +98,7 @@ router.put('/:id', function(req, res) {
 	var collection = db.get('providers');
 	collection.update({
 		_id: req.params.id
-	},
-	{
+	}, {
 		name: req.body.name,
 		phone: req.body.phone,
 		street: req.body.street,
@@ -94,8 +108,8 @@ router.put('/:id', function(req, res) {
 		services: req.body.services,
 		countiesServed: req.body.counties,
 		website: req.body.website,
-		description: req.body.description	
-	}, function(err, provider){
+		description: req.body.description
+	}, function(err, provider) {
 		if (err) throw err;
 		res.json(provider);
 	});
@@ -103,7 +117,9 @@ router.put('/:id', function(req, res) {
 
 router.delete('/:id', function(req, res) {
 	var collection = db.get('providers');
-	collection.remove({ _id: req.params.id }, function(err, provider){
+	collection.remove({
+		_id: req.params.id
+	}, function(err, provider) {
 		if (err) throw err;
 		res.json(provider);
 	});

@@ -1,12 +1,35 @@
 doctype html
 html
   head
-    title= title
+    title='AHOCHI: '+title
+
+    //- Angular
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js")
+
+    //- ngRoute
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js")
+
+    //- ngResource
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-resource.js")
+
+    //- Angular material
+    link(rel='stylesheet', href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js")
+    script(src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js")
+
+    //- Open Sans font
+    link(rel='stylesheet', href="https://fonts.googleapis.com/css?family=Open+Sans", type="text/css")
+
+    //- AHOCHI
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-resource.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js')
-    script(src='/javascripts/ahochi.js')
+    script(src='/javascripts/app.js')
+    script(src='/javascripts/controllers.js')
+    script(src='/javascripts/directives.js')
+
+    //- Page specific controller
+    script(src='/javascripts/controllers/'+controller+'.js')
+
   body(ng-app='Ahochi')
     block content

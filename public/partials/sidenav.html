@@ -1,0 +1,15 @@
+<div style="{{$mdMedia('gt-md') ? 'display: flex' : ''}}" ng-controller="SideNavCtrl">
+	<md-button ng-click="toggleNav('left')" ng-show="!$mdMedia('gt-md')">
+		<md-icon md-svg-src="/images/menu.svg"></md-icon>
+	</md-button>
+	<md-sidenav md-is-open="navOpen" md-component-id="left" class="md-sidenav-left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+		<md-toolbar class="md-theme-indigo">
+			<h1 class="md-toolbar-tools">AHOCHI</h1>
+		</md-toolbar>
+		<div layout="column">
+			<md-button href="/">Home</md-button>
+			<md-button href="/search">Search</md-button>
+			<md-button href="/add">Add new</md-button>
+		</div>
+	</md-sidenav>
+</div>
