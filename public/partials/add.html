@@ -1,0 +1,68 @@
+<md-progress-linear md-mode="indeterminate" ng-if="loading"></md-progress-linear>
+<div layout="row" class="main">
+    <ng-include style="display: flex" src="'/partials/sidenav.html'"></ng-include>
+    <div layout="column" layout-align="center center" flex>
+        <h1>Add a Provider</h1>
+        <md-content class="results" layout-padding>
+            <form ng-model="providerForm" ng-submit="save()">
+                <div layout="row">
+                    <md-input-container>
+                        <label>Name</label>     
+                        <input ng-model="provider.name" required>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container>
+                        <label>Street</label>       
+                        <input ng-model="provider.street" required>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container>
+                        <label>City</label>     
+                        <input ng-model="provider.city" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>State</label>        
+                        <input ng-model="provider.state" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Zip Code</label>     
+                        <input name="zip" ng-model="provider.zip" required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                        <div ng-messages="providerForm.zip.$error" role="alert">
+                            <div ng-message="pattern" class="my-message">
+                                That doesn't look like a valid zip code.
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container>
+                        <label>Phone</label>        
+                        <input name="phone" ng-model="provider.phone">
+                        <div class="hint">(###) ###-####</div>
+                    </md-input-container>
+                </div>
+                <md-chips ng-model="provider.services" placeholder="Services Offered"></md-chips>
+                <md-chips ng-model="provider.counties" placeholder="Counties Served"></md-chips>
+                <div layout="row">
+                    <md-input-container>
+                        <label>Website</label>      
+                        <input ng-model="provider.website">
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Description</label>
+                        <textarea ng-model="provider.description" required rows="5"></textarea>
+                    </md-input-container>
+                </div>
+                <div layout="row">
+                    <md-input-container>
+                        <md-button type="submit">Save</md-button>
+                    </md-input-container>
+                </div>
+            </form>
+        </md-content>
+    </div>
+</div>

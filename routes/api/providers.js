@@ -25,9 +25,9 @@ router.get('/', function(req, res) {
 	collection.find({}, {
 		limit: 100,
 		sort: {
-			_id: 1
-		}
-	}, function(err, providers) {
+			_id: -1
+}	},
+	function(err, providers) {
 		if (err) throw err;
 		res.json(providers);
 	});

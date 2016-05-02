@@ -22,6 +22,7 @@ var apiRoutes = {
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var search = require('./routes/search');
+var add = require('./routes/add');
 
 var app = express();
 
@@ -39,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/search', search);
+app.use('/add', add);
 
 app.use('/api/providers', apiRoutes.providers);
 app.use('/api/providers/search', apiRoutes.search);

@@ -27,7 +27,7 @@ ul {
     list-style: none;
 }
 
-.results { 
+/*.results { 
     -webkit-transition: 1000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
     -moz-transition: 1000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
     -ms-transition: 1000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
@@ -37,7 +37,7 @@ ul {
 
 .results {
     top: 0;
-}
+}*/
 
 .results.ng-hide {
     top: 100%;

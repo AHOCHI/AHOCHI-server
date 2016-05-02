@@ -20,7 +20,7 @@ router.get('/', function(req, res) {
     collection.find({}, {
             limit: 100,
             sort: {
-                _id: 1
+                _id: -1
             }
         },
         function(err, providers) {
@@ -39,7 +39,7 @@ router.get('/:search_string', function(req, res) {
         }, {
             limit: 100,
             sort: {
-                _id: 1
+                _id: -1
             }
         },
         function(err, providers) {
@@ -70,7 +70,7 @@ router.post('/:search_string', function(req, res) {
     collection.find(query, {
             limit: 100,
             sort: {
-                _id: 1
+                _id: -1
             }
         },
         function(err, providers) {
@@ -96,7 +96,7 @@ router.post('/', function(req, res) {
     collection.find(query, {
             limit: 100,
             sort: {
-                _id: 1
+                _id: -1
             }
         },
         function(err, providers) {
