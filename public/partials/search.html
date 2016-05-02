@@ -4,16 +4,27 @@
 	<div layout="column" layout-align="center center" flex>
 		<h1>AHOCHI Search</h1>
 		<form ng-model="searchForm" ng-submit="loadProviders(searchString)">
-			<md-input-container>
-				<label>Search</label>
-				<input type="text" ng-model="searchString" required>
-				<div class="hint" ng-show="!searchString">Enter a value to search</div>
-			</md-input-container>
-			<md-input-container>
-				<md-button type="submit">
-					<md-icon md-svg-src="/images/search.svg"></md-icon>
-				</md-button>
-			</md-input-container>
+			<div layout="row">
+				<span flex></span>
+				<md-input-container>
+					<label>Search</label>
+					<input type="text" ng-model="searchString">
+					<div class="hint" ng-show="!searchString">Enter a value to search</div>
+				</md-input-container>
+				<md-input-container>
+					<md-button type="submit">
+						<md-icon md-svg-src="/images/search.svg"></md-icon>
+					</md-button>
+				</md-input-container>
+				<span flex></span>
+			</div>
+			<div>
+				<md-input-container ng-repeat="opt in ['service', 'zip', 'city', 'state', 'county']">
+					<md-select ng-model="selected[opt]" placeholder="Select a {{opt}}" md-on-open="getOptions(opt)">
+						<md-option ng-value="o" ng-repeat="o in options[opt]">{{ o }}</md-option>
+					</md-select>
+				</md-input-container>
+			</div>
 		</form>
 		<md-content ng-show="providers" class="results" layout-padding layout="center center">
 			<div ng-if="providers.length === 0">No results found</div>

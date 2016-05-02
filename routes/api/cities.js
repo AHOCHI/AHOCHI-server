@@ -10,11 +10,36 @@ else {
 	db = monk('localhost:27017/ahochiMEAN');
 }
 
+var optToEndpoint = {
+	service: 'services',
+	county: 'countiesServed'
+}
+
 router.get('/', function(req, res) {
 	var collection = db.get('providers');
 	collection.distinct("city", function(err, cities) {
 		if (err) throw err;
 		res.json(cities);
+	});
+});
+
+router.post('/', function(req, res) {
+
+	var query = {};
+
+	for (var i in req.body) {
+		if (optToEndpoint[i]) {
+			query[optToEndpoint[i]] = req.body[i];
+		}
+		else {
+			query[i] = req.body[i];
+		}
+	}
+
+	var collection = db.get('providers');
+	collection.distinct("city", query, function(err, zips) {
+		if (err) throw err;
+		res.json(zips);
 	});
 });
 
